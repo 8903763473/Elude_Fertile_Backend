@@ -60,4 +60,13 @@ router.delete("/deleteIcon/:id",adminController.deleteIcon);
 router.post("/sendEmail",adminController.sendEmail);
    
 
+router.get("/getOverallOrder",adminController.getOverallOrder);
+router.get("/gatallOrderItems",adminController.gatallOrderItems);
+router.get("/getallCustomers",adminController.getallCustomers);
+router.get("/getallPayments",adminController.getallPayments);
+router.get("/getallReceipts",adminController.getallReceipts);
+router.get("/getallSalesReport",adminController.getallSalesReport);
+router.get("/getAllLoyaltyPrograms",adminController.getAllLoyaltyPrograms);
+router.get("/getallTables",adminController.getallTables);
+
 export default router

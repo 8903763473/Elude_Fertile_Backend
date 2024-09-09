@@ -637,8 +637,156 @@ const adminController = {
 
 
     //   =====================================
+    getallCategoryStock:async (req, res, next) => {
+        try {
+            const { 
+                ProductImage,
+                ProductName,
+                ProductCatagory,
+                Price
+            } = req.query;
+        
+            const getAllCategoryStock = await adminService.getallCategoryStock(
+                ProductImage,
+                ProductName,
+                ProductCatagory,
+                Price
+            );
+            res.status(200).json({
+                message: "Get All category Details",
+                data: getAllCategoryStock
+            });
+        } catch (error) {
+          error.error=error.message;
+          console.error(error);
+          error.statuscode=400;
+          next(error);
+        }
+      },
+ 
 
 
+
+      //===================================
+      getOverallOrder:async(req,res,next)=>{
+        try{
+          const getOverAllOrders=await adminService.getOverallOrder();
+          res.status(200).json({
+            message:"Get Overall Orders",
+            data:getOverAllOrders
+          });
+        }catch(error){
+          error.error=error.message;
+          console.error(error);
+          error.statuscode=400;
+          next(error);
+        }
+    },
+    //==================================
+    gatallOrderItems:async(req,res,next)=>{
+        try{
+          const getallOrderlist=await adminService.gatallOrderItems();
+          res.status(200).json({
+            message:"Get OverallItems details",
+            data:getallOrderlist
+          });
+        }catch(error){
+          error.error=error.message;
+          console.error(error);
+          error.statuscode=400;
+          next(error);
+        }
+    },
+    //=============================================
+    getallCustomers:async(req,res,next)=>{
+        try{
+          const getallDetails=await adminService.getallCustomers();
+          res.status(200).json({
+            message:"Get OverallCustomers details",
+            data:getallDetails
+          });
+        }catch(error){
+          error.error=error.message;
+          console.error(error);
+          error.statuscode=400;
+          next(error);
+        }
+    },
+    //===============================================
+    getallPayments:async(req,res,next)=>{
+        try{
+          const getallPayments=await adminService.getallPayments();
+          res.status(200).json({
+            message:"Get Overall Payments details",
+            data:getallPayments
+          });
+        }catch(error){
+          error.error=error.message;
+          console.error(error);
+          error.statuscode=400;
+          next(error);
+        }
+    },
+    //==============================================
+    getallReceipts:async(req,res,next)=>{
+        try{
+          const getallReceipts=await adminService.getallReceipts();
+          res.status(200).json({
+            message:"Get Overall Receipts Details",
+            data:getallReceipts
+          });
+        }catch(error){
+          error.error=error.message;
+          console.error(error);
+          error.statuscode=400;
+          next(error);
+        }
+    },
+    //==============================================
+    getallSalesReport:async(req,res,next)=>{
+        try{
+          const getallSalesReport=await adminService.getallSalesReport();
+          res.status(200).json({
+            message:"Get Overall SalesReport Details",
+            data:getallSalesReport
+          });
+        }catch(error){
+          error.error=error.message;
+          console.error(error);
+          error.statuscode=400;
+          next(error);
+        }
+    },
+    //===============================================
+    getAllLoyaltyPrograms:async(req,res,next)=>{
+        try{
+          const getOverallLoyaltyPrograms=await adminService.getAllLoyaltyPrograms();
+          res.status(200).json({
+            message:" Overall LoyaltyPrograms Details",
+            data:getOverallLoyaltyPrograms
+          });
+        }catch(error){
+          error.error=error.message;
+          console.error(error);
+          error.statuscode=400;
+          next(error);
+        }
+    },
+    //=================================================
+    getallTables:async(req,res,next)=>{
+        try{
+          const getallTable=await adminService.getallTables();
+          res.status(200).json({
+            message:" Overall Tables Details",
+            data:getallTable
+          });
+        }catch(error){
+          error.error=error.message;
+          console.error(error);
+          error.statuscode=400;
+          next(error);
+        }
+    },  
 
 
 }

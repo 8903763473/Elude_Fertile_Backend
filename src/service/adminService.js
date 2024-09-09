@@ -18,6 +18,14 @@ import {
   fileURLToPath
 } from 'url';
 
+import orderModel from "../model/orderModel.js";
+import orderItemModel from "../model/orderItemModel.js";
+import customerModel from "../model/customerModel.js";
+import paymentModel from "../model/paymentModel.js";
+import receiptsModel from "../model/receiptsModel.js";
+import salesReportModel from "../model/salesReportModel.js";
+import loyaltyProgramsModel from "../model/loyaltyProgramsModel.js";
+import TablesModels from "../model/TablesModel.js";
 
 
 const transporter = nodemailer.createTransport({
@@ -916,7 +924,131 @@ const adminService = {
         resolve(info);
       });
     });
-  }
+  },
+
+
+  getallCategoryStock: async (
+    ProductImage,
+    ProductName,
+    ProductCatagory,
+    Price
+  ) => {
+    try {
+      const filter = {};
+
+      if (ProductImage) {
+        filter.ProductImage = ProductImage;
+        console.log('Product Image:', filter.ProductImage);
+        const productImages = await ProductModel.find(filter);
+        console.log(productImages);
+        return productImages;
+        //return allOrderItems.map(item => ({ order_item_id: order_item_id}));
+      }
+      if (ProductName) {
+        filter.ProductName = ProductName;
+        console.log('Product Name:', filter.ProductName);
+        const productNames = await ProductModel.find(filter);
+        console.log(productNames);
+        return productNames; //return allOrderItems.map(item => ({ order_id: order_id}));
+      }
+      if (ProductCatagory) {
+        filter.ProductCatagory = ProductCatagory;
+        console.log('Fetching by order_id:', filter.ProductCatagory);
+        const catagoryProduct = await ProductModel.find(filter);
+        console.log(catagoryProduct);
+        return catagoryProduct; //return allOrderItems.map(item => ({ order_id: order_id}));
+      }
+      if (Price) {
+        filter.Price = Price;
+        console.log('Fetching by order_id:', filter.Price);
+        const PriceProduct = await ProductModel.find(filter);
+        console.log(PriceProduct);
+        return PriceProduct; //return allOrderItems.map(item => ({ order_id: order_id}));
+      }
+      if (Object.keys(filter).length === 0) {
+        throw new Error('No valid filter criteria provided');
+      }
+
+      //const allOrderItems = await orderItemModel.find(filter);
+      //return allOrderItems.map(item => ({ product_id: item.product_id }));
+
+    } catch (error) {
+      throw new Error('Error fetching orders: ' + error.message);
+    }
+  },
+  //=========================================================
+
+  getOverallOrder: async () => {
+    try {
+      const overallOrders = await orderModel.find();
+      return overallOrders;
+    } catch (error) {
+      throw new error;
+    }
+  },
+  //===========================================
+  gatallOrderItems: async () => {
+    try {
+      const overallOrderItem = await orderItemModel.find();
+      return overallOrderItem;
+    } catch (error) {
+      throw new error;
+    }
+  },
+  //==============================================
+  getallCustomers: async () => {
+    try {
+      const overallCustomers = await customerModel.find();
+      return overallCustomers;
+    } catch (error) {
+      throw new error;
+    }
+  },
+  //=========================================
+  getallPayments: async () => {
+    try {
+      const overallPayments = await paymentModel.find();
+      return overallPayments;
+    } catch (error) {
+      throw new error;
+    }
+  },
+  //=========================================
+  getallReceipts: async () => {
+    try {
+      const overallReceipts = await receiptsModel.find();
+      return overallReceipts;
+    } catch (error) {
+      throw new error;
+    }
+  },
+  //=======================================
+  getallSalesReport: async () => {
+    try {
+      const overallSalesReceipts = await salesReportModel.find();
+      return overallSalesReceipts;
+    } catch (error) {
+      throw new error;
+    }
+  },
+  //=============================================
+  getAllLoyaltyPrograms: async () => {
+    try {
+      const overallLoyaltyPrograms = await loyaltyProgramsModel.find();
+      return overallLoyaltyPrograms;
+    } catch (error) {
+      throw new error;
+    }
+  },
+  //=====================================
+  getallTables: async () => {
+    try {
+      const getAlltables = await TablesModels.find();
+      return getAlltables;
+    } catch (error) {
+      throw new error;
+    }
+  },
 
 
 }

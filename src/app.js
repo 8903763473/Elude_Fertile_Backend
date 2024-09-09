@@ -2,6 +2,7 @@ import express from "express";
 import http, { createServer } from "http";
 import adminRouter from "./router/adminRoter.js";
 import inventoryRouter from "./router/inventoryRouter.js"
+import salesRouter from "./router/salesRouter.js"
 import cors from "cors";
 import db from "./db/db.js";
 import "dotenv/config";
@@ -13,6 +14,7 @@ app.use(express.json({ limit: "10mb" }));
 
 app.use("/admin", adminRouter);
 app.use("/api",inventoryRouter)
+app.use("/api",salesRouter)
 
 const PORT = process.env.PORT || 5700;  
 
